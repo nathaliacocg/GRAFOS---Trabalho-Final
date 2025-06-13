@@ -22,12 +22,36 @@ public class Matriz_Adjacencia {
         return matriz[origem][destino] == 1;
     }
 
-    public void grafo_completo(int num_v) {
+    public void grafo_completo() {
         for (int i = 0; i < num_v; i++) {
             for (int j = i + 1; j < num_v; j++) {
                 adicionar_aresta(i, j);
             }
         }
+    }
+
+    public void checa_completo(){
+        for(int i = 0; i<num_v; i++){
+            for(int j = 0; j<num_v; j++){
+                if(matriz[i][j] != 1){
+                    System.out.println("O grafo não é completo.");
+                    break;
+                }
+            }
+        }
+        System.out.println("O grafo é completo");
+    }
+
+    public void checa_vazio(){
+        for(int i = 0; i<num_v; i++){
+            for(int j = 0; j<num_v; j++){
+                if(matriz[i][j] != 0){
+                    System.out.println("O grafo não é vaszio.");
+                    break;
+                }
+            }
+        }
+        System.out.println("O grafo é vazio.");
     }
 
     public void print_matriz(){
