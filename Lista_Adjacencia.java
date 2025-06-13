@@ -24,6 +24,14 @@ public class Lista_Adjacencia {
         return lista[origem].contains(destino);
     }
 
+    public void grafo_completo(int num_v) {
+        for (int i = 0; i < num_v; i++) {
+            for (int j = i + 1; j < num_v; j++) {
+                adicionar_aresta(i, j);
+            }
+        }
+    }
+
     public void print_lista(){
         for(int i = 0; i<num_v; i++){
             System.out.print("Vértice" + i + ": ");
