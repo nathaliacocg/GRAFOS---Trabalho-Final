@@ -32,6 +32,29 @@ public class Lista_Adjacencia {
         }
     }
 
+    public void checa_completo() {
+        for (int i = 0; i < num_v; i++) {
+            if (lista[i].size() != num_v - 1) {
+                System.out.println("O grafo não é completo.");
+                return;
+            }
+        }
+        System.out.println("O grafo é completo.");
+    }
+
+
+    public void checa_vazio() {
+        for (int i = 0; i < num_v; i++) {
+            if (!lista[i].isEmpty()) {
+                System.out.println("O grafo não é vazio.");
+                return;
+            }
+        }
+        System.out.println("O grafo é vazio.");
+    }
+
+    
+
     public void print_lista(){
         for(int i = 0; i<num_v; i++){
             System.out.print("Vértice" + i + ": ");
