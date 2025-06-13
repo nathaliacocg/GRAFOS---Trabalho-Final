@@ -15,12 +15,19 @@ public class Matriz_Adjacencia {
 
     public void remover_aresta(int origem, int destino){
         matriz[origem][destino] = 0;
-        //em um grafo não direcionado, é preciso adicionar as arestas em ambos os sentidos
         matriz[destino][origem] = 0;
     }
 
     public boolean existe_aresta(int origem, int destino){
         return matriz[origem][destino] == 1;
+    }
+
+    public void grafo_completo(int num_v) {
+        for (int i = 0; i < num_v; i++) {
+            for (int j = i + 1; j < num_v; j++) {
+                adicionar_aresta(i, j);
+            }
+        }
     }
 
     public void print_matriz(){
