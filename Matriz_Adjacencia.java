@@ -1,67 +1,73 @@
-public class Matriz_Adjacencia {
+class Matriz_Adjacencia {
     private int[][] matriz;
     private int num_v;
+    private String[] rot_v;
 
-    public Matriz_Adjacencia(int num_v){
+    public Matriz_Adjacencia(int num_v) {
         this.num_v = num_v;
-        this.matriz = new int[num_v][num_v];
+        matriz = new int[num_v][num_v];
+        rot_v = new String[num_v];
     }
 
-    public void adicionar_aresta(int origem, int destino){
-        matriz[origem][destino] = 1;
-        //em um grafo não direcionado, é preciso adicionar as arestas em ambos os sentidos
-        matriz[destino][origem] = 1;
+    public void adicionar_aresta(int origem, int destino, int peso) {
+        matriz[origem][destino] = peso;
+        matriz[destino][origem] = peso; // Grafo não direcionado
     }
 
-    public void remover_aresta(int origem, int destino){
+    public void remover_aresta(int origem, int destino) {
         matriz[origem][destino] = 0;
         matriz[destino][origem] = 0;
     }
 
-    public boolean existe_aresta(int origem, int destino){
-        return matriz[origem][destino] == 1;
+    public void rot_vertice(int vertice, String rotulo) {
+        rot_v[vertice] = rotulo;
     }
 
-    public void grafo_completo() {
+    public boolean existe_aresta(int origem, int destino) {
+        return matriz[origem][destino] != 0;
+    }
+
+    public boolean adjacente(int origem, int destino) {
+        return existe_aresta(origem, destino);
+    }
+
+    public boolean incidente(int vertice, int destino) {
+        return matriz[vertice][destino] != 0 || matriz[destino][vertice] != 0;
+    }
+
+    public int count_aresta() {
+        int cont = 0;
         for (int i = 0; i < num_v; i++) {
-            for (int j = i + 1; j < num_v; j++) {
-                adicionar_aresta(i, j);
+            for (int j = i+1; j < num_v; j++) {
+                if (matriz[i][j] != 0) cont++;
             }
         }
+        return cont;
     }
 
-    public void checa_completo(){
-        for(int i = 0; i<num_v; i++){
-            for(int j = 0; j<num_v; j++){
-                if(matriz[i][j] != 1){
-                    System.out.println("O grafo não é completo.");
-                    break;
-                }
+    public int count_vertice() {
+        return num_v;
+    }
+
+    public boolean vazio() {
+        return count_aresta() == 0;
+    }
+
+    public boolean completo() {
+        for (int i = 0; i < num_v; i++) {
+            for (int j = 0; j < num_v; j++) {
+                if (i != j && matriz[i][j] == 0) return false;
             }
         }
-        System.out.println("O grafo é completo");
+        return true;
     }
 
-    public void checa_vazio(){
-        for(int i = 0; i<num_v; i++){
-            for(int j = 0; j<num_v; j++){
-                if(matriz[i][j] != 0){
-                    System.out.println("O grafo não é vaszio.");
-                    break;
-                }
-            }
-        }
-        System.out.println("O grafo é vazio.");
-    }
-
-    public void print_matriz(){
-        System.out.println("Matriz de Adjacência:");
-        for(int i = 0; i<num_v; i++){
-            for(int j = 0; j<num_v; j++){
-                System.out.println(matriz[i][j] + " ");
+    public void print() {
+        for (int i = 0; i < num_v; i++) {
+            for (int j = 0; j < num_v; j++) {
+                System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
         }
     }
-
 }
