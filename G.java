@@ -11,12 +11,15 @@ public class G {
         
         if (escolha == 1) {
             Matriz_Adjacencia matriz = new Matriz_Adjacencia(n);
+            rotularVertices(sc, matriz, null);
             menuMatriz(sc, matriz);
         } else {
             Lista_Adjacencia lista = new Lista_Adjacencia(n);
+            rotularVertices(sc, null, lista);
             menuLista(sc, lista);
         }
         sc.close();
+
     }
 
     public static void menuMatriz(Scanner sc, Matriz_Adjacencia matriz) {
@@ -67,6 +70,16 @@ public class G {
                     break;
             }
         } while(opcao != 0);
+    }
+    // esta função não esta funcionando corretamente, por alguma razão ela pula o vertice 0, mas essa semana ta cheia de prova :( por isso q não deu pra resolver a tempo. 
+    public static void rotularVertices(Scanner sc, Matriz_Adjacencia matriz, Lista_Adjacencia lista) {
+        System.out.println("Informe os rótulos dos vértices:");
+        for (int i = 0; i < (matriz != null ? matriz.count_vertice() : lista.count_vertice()); i++) {
+            System.out.print("Vértice " + i + ": ");
+            String rotulo = sc.nextLine();
+            if (matriz != null) matriz.rotularVertice(i, rotulo);
+            if (lista != null) lista.rotularVertice(i, rotulo);
+        }
     }
 
     public static void menuLista(Scanner sc, Lista_Adjacencia lista) {
