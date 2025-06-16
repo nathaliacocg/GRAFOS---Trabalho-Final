@@ -1,5 +1,5 @@
 # GRAFOS - Trabalho Final
-Integrantes:\n
+Integrantes:  
 Luís Felipe Henrique Campelo  
 Lucas Meira Duque  
 João Gabriel Mendonça Geraime Teodoro  
