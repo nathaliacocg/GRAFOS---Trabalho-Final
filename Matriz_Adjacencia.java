@@ -2,10 +2,12 @@ class Matriz_Adjacencia {
     private int[][] matriz;
     private int num_v;
     private String[] rot_v;
+    private String[] rotuloVertices;
 
     public Matriz_Adjacencia(int num_v) {
         this.num_v = num_v;
         matriz = new int[num_v][num_v];
+        rotuloVertices = new String[num_v-1];
         rot_v = new String[num_v];
     }
 
@@ -18,7 +20,9 @@ class Matriz_Adjacencia {
         matriz[origem][destino] = 0;
         matriz[destino][origem] = 0;
     }
-
+    public void rotularVertice(int vertice, String rotulo) {
+        rotuloVertices[vertice] = rotulo;
+    }
     public void rot_vertice(int vertice, String rotulo) {
         rot_v[vertice] = rotulo;
     }
